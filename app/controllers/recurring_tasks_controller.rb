@@ -3,11 +3,11 @@ class RecurringTasksController < ApplicationController
   unloadable
 
   # before_filter :authorize, :except => :index # not sure why index is excluded, but this is true for issues ...
-  before_filter :find_optional_project # this also checks permissions
-  before_filter :find_recurring_task, :except => [:index, :new, :create]
-  before_filter :set_interval_units, :except => [:index, :show]
-  before_filter :set_recurrable_issues, :except => [:index, :show]
-  before_filter :cancel_edit, :only => [:new, :create, :edit, :update] # #41 TODO is this necessary?
+  before_action :find_optional_project # this also checks permissions
+  before_action :find_recurring_task, :except => [:index, :new, :create]
+  before_action :set_interval_units, :except => [:index, :show]
+  before_action :set_recurrable_issues, :except => [:index, :show]
+  before_action :cancel_edit, :only => [:new, :create, :edit, :update] # #41 TODO is this necessary?
 
 
   def index
